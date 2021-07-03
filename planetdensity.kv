@@ -1,0 +1,84 @@
+#:kivy 2.0.0
+
+<PlanetGame>:
+    input: user_inputdensity
+    density: density_input
+    match: match_output
+    composition: planet_likelycomposition
+    info: density_furtherinfo
+
+    #size_hint: None, None # this eliminates minimum widget size, crowding elements
+    orientation: "vertical" # this ensures elements are stacked vertically
+
+    Label:
+        id: title
+        text: "Planet Density"
+        font_size: 38
+        size: self.texture_size
+        size_hint: 0.3, 0.4
+        pos_hint: {"x":.35, "top":1}
+
+    Label:
+        font_size: 18
+        text: "Input density, in g/cm^3:"
+        size: self.texture_size
+        size_hint: 0.3, 0.2
+        pos_hint: {"x":.35, "top":1}
+
+    Label:
+        text: "(Recommended range: 0.01 - 6.99)"
+        size: self.texture_size
+        size_hint: 0.3, 0.2
+        pos_hint: {"x":.35, "top":1}
+
+    TextInput:
+        id: density_input
+        multiline: False
+        write_tab: False
+        font_size: 35
+        size_hint: 0.3, 0.4
+        pos_hint: {"x":.35, "top":1}
+        # hint_text: "1.27" #dummy text
+        on_text_validate: app.root.find_match()
+
+    Button:
+        id: input_enter
+        text: 'Enter'
+        size_hint: 0.3, 0.2
+        pos_hint: {"x":.35, "top":1}
+        on_press: app.root.find_match()
+
+    Label:
+        markup: True
+        font_size: 20
+        id: user_inputdensity
+        text: '[b]You Input:[/b]'
+        size_hint: 0.3, 0.4
+        pos_hint: {"x":.35, "top":1}
+
+    Label:
+        markup: True
+        font_size: 20
+        id: planet_likelycomposition
+        text: '[b]Likely Composition:[/b]'
+        size_hint: 0.3, 0.1
+        pos_hint: {"x":.35, "top":1}
+
+    Label:
+        markup: True
+        font_size: 20
+        id: match_output
+        text: ''
+        size_hint: 0.9, 0.3
+        pos_hint: {"x":.05, "top":1}
+        text_size: self.width, None
+
+    Label:
+        markup: True
+        font_size: 18
+        id: density_furtherinfo
+        text: ''
+        size_hint: 0.9, 0.4
+        pos_hint: {"x":.05, "top":1}
+        text_size: self.width, None
+        padding_y: 0,10
